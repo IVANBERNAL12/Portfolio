@@ -490,6 +490,87 @@ footer .acc { color: var(--accent); }
   .section { padding: 72px 20px; }
   footer { flex-direction: column; gap: 8px; text-align: center; }
 }
+  .avatar-photo-wrap {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  margin-bottom: 12px;
+}
+
+.avatar-photo {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  position: relative;
+  z-index: 2;
+  border: 3px solid rgba(77,220,180,0.4);
+  transition: transform 0.4s, box-shadow 0.4s;
+}
+
+.avatar-photo:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 40px rgba(77,220,180,0.3);
+}
+
+.avatar-ring {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  background: linear-gradient(135deg, var(--accent), var(--accent2)) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  animation: spin 8s linear infinite;
+  z-index: 1;
+}
+
+.avatar-glow {
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(77,220,180,0.15) 0%, transparent 70%);
+  z-index: 0;
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.avatar-badge {
+  position: absolute;
+  bottom: 4px;
+  right: -4px;
+  z-index: 3;
+  background: #0e0e1a;
+  border: 1px solid rgba(40,200,64,0.4);
+  border-radius: 20px;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #28c840;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+
+.avatar-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #28c840;
+  animation: pulse 2s infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
 </style>
 </head>
 <body>
@@ -595,8 +676,15 @@ footer .acc { color: var(--accent); }
       <div class="about-img reveal-r">
         <div class="about-img-deco"></div>
         <div class="about-img-inner">
-          <div class="avatar-placeholder">👨‍💻</div>
-          <div class="avatar-name">Ivan Bernal</div>
+         <div class="avatar-photo-wrap">
+          <img src="avatar.webp" alt="Ivan Bernal" class="avatar-photo"/>
+            <div class="avatar-ring"></div>
+          <div class="avatar-glow"></div>
+          <div class="avatar-badge">
+          <span class="avatar-badge-dot"></span> Available
+          </div>
+        </div>
+<div class="avatar-name">Ivan Bernal</div>
           <div class="avatar-sub">Full-Stack Developer</div>
           <div class="status-chip"><span class="live-dot"></span> Available for hire</div>
           <p style="font-size:12px;color:var(--text3);margin-top:8px;font-family:'JetBrains Mono',monospace">Calamba, PH 🇵🇭</p>
